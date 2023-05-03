@@ -43,6 +43,7 @@ class _portraitList extends StatelessWidget {
           imageURI: items[index]['image'],
           itemTitle: items[index]['name'],
           itemPrice: items[index]['price'],
+          discount: items[index]['discount'],
           itemDescription: items[index]['description']);
     }, childCount: items.length));
   }
@@ -59,6 +60,7 @@ class _landscapeList extends StatelessWidget {
               imageURI: items[index]['image'],
               itemTitle: items[index]['name'],
               itemPrice: items[index]['price'],
+              discount: items[index]['discount'],
               itemDescription: items[index]['description']);
         }, childCount: items.length),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

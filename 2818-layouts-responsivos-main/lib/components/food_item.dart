@@ -5,14 +5,31 @@ class FoodItem extends StatelessWidget {
       {Key? key,
       required this.itemTitle,
       required this.itemPrice,
-      required this.imageURI})
+      required this.imageURI,
+      required this.discount})
       : super(key: key);
   final String itemTitle;
+  final String discount;
   final String itemPrice;
   final String imageURI;
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+
+    final itemPriceStyle = TextStyle(
+      decoration: brightness == Brightness.dark
+          ? TextDecoration.lineThrough
+          : TextDecoration.none,
+      color: brightness == Brightness.dark ? Colors.grey : null,
+    );
+
+    final discountStyle = TextStyle(
+      color: brightness == Brightness.dark ? Colors.green : null,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    );
+
     return InkWell(
       child: Card(
         clipBehavior: Clip.hardEdge,
@@ -31,7 +48,17 @@ class FoodItem extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                  Text("R\$ " + itemPrice),
+                  Text(
+                    "R\$ " + itemPrice,
+                    style: itemPriceStyle,
+                  ),
+                  Visibility(
+                    visible: Theme.of(context).brightness == Brightness.dark,
+                    child: Text(
+                      "R\$ " + discount,
+                      style: discountStyle,
+                    ),
+                  ),
                 ],
               ),
             ),

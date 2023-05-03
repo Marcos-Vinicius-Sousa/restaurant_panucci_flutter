@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:panucci_ristorante/components/main_drawer.dart';
 import 'package:panucci_ristorante/screens/checkout.dart';
+import 'package:panucci_ristorante/remote_config/custom_remote_config.dart';
 import 'package:panucci_ristorante/screens/drinsk_menu.dart';
 import 'package:panucci_ristorante/screens/food_menu.dart';
 import 'package:panucci_ristorante/screens/highlights.dart';
@@ -15,6 +16,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentPage = 0;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchRemoteConfig().then((isDark) {
+      setState(() {
+        isLoading = isDark;
+      });
+    });
+  }
+
+  Future<bool> fetchRemoteConfig() async {
+    return CustomRemoteConfig()
+        .getValueOrDefault(key: 'isActiveThemeDark', defaultValue: false);
+  }
+
+  void _incrementColor() async {
+    setState(() => isLoading = true);
+    await CustomRemoteConfig().forceFetch();
+    setState(() => isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
@@ -25,7 +49,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ristorante Panucci"),
+        title: const Text("Restaurante Panucci"),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         actions: const <Widget>[
           Padding(
@@ -39,11 +63,11 @@ class _HomeState extends State<Home> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
+        onPressed: _incrementColor
+        /*Navigator.push(context, MaterialPageRoute(builder: (context) {
             return const Checkout();
-          }));
-        },
+          })); */
+        ,
         child: const Icon(Icons.point_of_sale),
       ),
       drawer: const MainDrawer(),

@@ -23,10 +23,10 @@ class FoodMenu extends StatelessWidget {
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
             return FoodItem(
-              itemTitle: items[index]['name'],
-              itemPrice: items[index]['price'],
-              imageURI: items[index]['image'],
-            );
+                itemTitle: items[index]['name'],
+                itemPrice: items[index]['price'],
+                imageURI: items[index]['image'],
+                discount: items[index]['discount']);
           }, childCount: items.length))
         ],
       ),

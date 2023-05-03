@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "617174873377",
+    "project_id": "panucci-bda4b",
+    "storage_bucket": "panucci-bda4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617174873377:android:250f561d460ca3005c7a60",
+        "android_client_info": {
+          "package_name": "com.example.panucci_ristorante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617174873377-1165s2kjc5n5mkis536bcernmk4p7odu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDrr0XfVzm3uTO2V4zY4LDCPkyvu4rSsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617174873377-1165s2kjc5n5mkis536bcernmk4p7odu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "617174873377-t9sqe0mhee42f0m9oqic5lfl01rd08t7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.panucciRistorante"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

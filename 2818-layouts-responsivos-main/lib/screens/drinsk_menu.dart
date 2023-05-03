@@ -26,9 +26,11 @@ class DrinksMenu extends StatelessWidget {
           SliverGrid(
               delegate: SliverChildBuilderDelegate((context, index) {
                 return DrinkItem(
-                    imageURI: items[index]["image"],
-                    itemTitle: items[index]["name"],
-                    itemPrice: items[index]["price"]);
+                  imageURI: items[index]["image"],
+                  itemTitle: items[index]["name"],
+                  itemPrice: items[index]["price"],
+                  discount: items[index]["discount"],
+                );
               }, childCount: items.length),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: MediaQuery.of(context).orientation ==
