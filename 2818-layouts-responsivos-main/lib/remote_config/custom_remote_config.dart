@@ -12,7 +12,7 @@ class CustomRemoteConfig {
     firebaseRemoteConfig = FirebaseRemoteConfig.instance;
     await firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: Duration.zero));
+        minimumFetchInterval: const Duration(seconds: 2)));
   }
 
   Future<void> forceFetch() async {

@@ -36,6 +36,14 @@ class _HomeState extends State<Home> {
   void _incrementColor() async {
     setState(() => isLoading = true);
     await CustomRemoteConfig().forceFetch();
+    setState(() {
+      MaterialApp(
+        darkTheme: CustomRemoteConfig().getValueOrDefault(
+                key: 'isActiveThemeDark', defaultValue: false)
+            ? ThemeData.dark()
+            : ThemeData(colorSchemeSeed: Colors.purple, useMaterial3: true),
+      );
+    });
     setState(() => isLoading = false);
   }
 
@@ -94,7 +102,11 @@ class _HomeState extends State<Home> {
           });
         },
       ),
-      body: pages.elementAt(_currentPage),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : pages.elementAt(_currentPage),
     );
   }
 }

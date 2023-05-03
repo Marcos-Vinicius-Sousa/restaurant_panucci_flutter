@@ -30,7 +30,6 @@ class _PanucciRistoranteState extends State<PanucciRistorante> {
   @override
   void initState() {
     super.initState();
-    CustomRemoteConfig().forceFetch();
     fetchRemoteConfig();
     print(isDarkTheme);
   }
@@ -44,7 +43,7 @@ class _PanucciRistoranteState extends State<PanucciRistorante> {
       darkTheme: isDarkTheme
           ? ThemeData.dark()
           : ThemeData(colorSchemeSeed: Colors.purple, useMaterial3: true),
-      initialRoute: '/myhome',
+      initialRoute: '/home',
       routes: {
         '/home': (_) => const Home(),
         '/menu': (_) => const HighLights(),
@@ -61,6 +60,7 @@ class _PanucciRistoranteState extends State<PanucciRistorante> {
         key: 'isActiveThemeDark',
         defaultValue: false,
       );
+      CustomRemoteConfig().forceFetch();
     });
     return isDarkTheme;
   }
@@ -77,9 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = false;
 
   void _incrementCounter() async {
-    setState(() => isLoading = true);
-    await CustomRemoteConfig().forceFetch();
-    setState(() => isLoading = false);
+    setState(() {
+      isLoading = true;
+    });
+    CustomRemoteConfig().forceFetch();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
